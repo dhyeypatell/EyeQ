@@ -1,9 +1,14 @@
 # Dependencies
-node_modules
+node_modules/
 .next
+
+# Build output
+build/
 
 # Lock files
 package-lock.json
 
 # Other
+.gitignore
+.vscode/
 .DS_Store
