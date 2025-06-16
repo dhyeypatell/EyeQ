@@ -1,6 +1,7 @@
-# EyeQ - Visual Question Answering Bot
-- Give it data, and it will answer your questions
-- Data can include images and text
+# Inkling
 
-## EyeQ is currently being developed
+- A chatbot that helps users by providing writing assistance with definitions, synonyms, rhyming words, spelling, and building sentences and paragraphs.
+
+## This app is currently being developed
+
 - Use `git pull` to start developing
