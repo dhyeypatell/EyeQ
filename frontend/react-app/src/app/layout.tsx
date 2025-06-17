@@ -1,3 +1,5 @@
+import "../styles/reset.scss";
+
 export default function RootLayout({
   children,
 }: Readonly<{
