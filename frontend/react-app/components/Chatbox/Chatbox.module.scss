@@ -1,0 +1,33 @@
+@use "../../src/styles/mixins" as *;
+
+.chatInput {
+  width: 800px;
+  height: 100px;
+  border-radius: 10px;
+  border-width: 1px;
+  padding: 15px;
+  resize: none;
+}
+
+.chatInput:focus {
+  outline: none;
+}
+
+@include respond-to("large") {
+  .chatInput {
+    width: 600px;
+  }
+}
+
+@include respond-to("medium") {
+  .chatInput {
+    width: 85%;
+  }
+}
+
+@include respond-to("small") {
+  .chatInput {
+    width: 95%;
+    margin: 0 10px;
+  }
+}
