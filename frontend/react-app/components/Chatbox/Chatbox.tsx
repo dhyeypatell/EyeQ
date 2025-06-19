@@ -2,7 +2,7 @@
 import data from "./Chatbox.json";
 import Styles from "./Chatbox.module.scss";
 import UpArrowIcon from "../../src/assets/icons/up-arrow-circle.svg";
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function Chatbox() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
