@@ -1,0 +1,25 @@
+@use "../styles/mixins" as *;
+
+.mainContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+}
+
+@include respond-to("large") {
+  .mainContainer {
+    gap: 20px;
+  }
+}
+
+@include respond-to("small") {
+  .mainContainer {
+    justify-content: space-between;
+    gap: 0;
+    padding: 25px;
+  }
+}

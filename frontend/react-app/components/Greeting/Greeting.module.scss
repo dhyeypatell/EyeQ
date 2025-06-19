@@ -1,0 +1,22 @@
+@use "../../src/styles/mixins" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 11px;
+
+  .mainText {
+    font-size: 24px;
+  }
+
+  .subText {
+    font-size: 18px;
+  }
+}
+
+@include respond-to("large") {
+  .container {
+    gap: 10px;
+  }
+}

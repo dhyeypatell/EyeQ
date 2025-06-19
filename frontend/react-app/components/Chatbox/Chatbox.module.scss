@@ -1,0 +1,103 @@
+@use "../../src/styles/mixins" as *;
+@use "../../src/styles/colors" as *;
+
+.container {
+  border: 1px solid $black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:hover {
+    cursor: text;
+  }
+
+  .chatInput {
+    width: 800px;
+    height: 100px;
+    border: none;
+    resize: none;
+    margin-top: 15px;
+    margin-right: 15px;
+    margin-left: 15px;
+    padding-right: 20px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .iconContainer {
+    width: 800px;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+
+    .icon {
+      height: 38px;
+      width: 38px;
+      background-color: $black;
+      border-radius: 50%;
+
+      &:hover {
+        background-color: $dark-gray;
+        cursor: pointer;
+
+        circle {
+          fill: $dark-gray;
+        }
+      }
+
+      path {
+        fill: $white;
+      }
+    }
+
+    .disableIcon {
+      background-color: $dark-gray;
+
+      &:hover {
+        cursor: default;
+      }
+
+      circle {
+        fill: $dark-gray;
+      }
+    }
+  }
+}
+
+@include respond-to("large") {
+  .container {
+    .chatInput,
+    .iconContainer {
+      width: 600px;
+    }
+  }
+}
+
+@include respond-to("medium") {
+  .container {
+    width: 90%;
+    padding: 15px;
+
+    .chatInput,
+    .iconContainer {
+      width: 100%;
+    }
+
+    .chatInput {
+      margin: 0;
+    }
+
+    .iconContainer {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@include respond-to("small") {
+  .container {
+    width: 95%;
+  }
+}
