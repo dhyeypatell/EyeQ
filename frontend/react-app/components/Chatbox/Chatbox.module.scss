@@ -1,12 +1,16 @@
 @use "../../src/styles/mixins" as *;
+@use "../../src/styles/colors" as *;
 
 .container {
-  width: fit-content;
-  border: 1px solid black;
+  border: 1px solid $black;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  &:hover {
+    cursor: text;
+  }
 
   .chatInput {
     width: 800px;
@@ -30,17 +34,22 @@
     margin-bottom: 15px;
 
     .icon {
-      height: 40px;
-      width: 40px;
+      height: 38px;
+      width: 38px;
+      background-color: $black;
+      border-radius: 50%;
 
       &:hover {
+        background-color: $dark-grey;
+        cursor: pointer;
+
         circle {
-          fill: grey;
+          fill: $dark-grey;
         }
       }
 
       path {
-        fill: white;
+        fill: $white;
       }
     }
   }
