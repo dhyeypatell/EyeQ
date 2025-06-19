@@ -52,6 +52,18 @@
         fill: $white;
       }
     }
+
+    .disableIcon {
+      background-color: $dark-gray;
+
+      &:hover {
+        cursor: default;
+      }
+
+      circle {
+        fill: $dark-gray;
+      }
+    }
   }
 }
 
