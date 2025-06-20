@@ -12,6 +12,12 @@
     ],
     "creator": "Dhyey Patel",
     "applicationName": "Inkling",
-    "category": "Productivity"
+    "category": "Productivity",
+    "icons": {
+      "icon": {
+        "type": "image/png",
+        "url": "/favicon.png"
+      }
+    }
   }
 }
