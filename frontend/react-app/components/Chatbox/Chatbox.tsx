@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import clsx from "clsx";
 import toast from "react-hot-toast";
 import type { ChatboxData } from "./chatbox";
-import chatboxData from "./Chatbox.json";
+import chatboxData from "./chatbox.json";
 import Styles from "./Chatbox.module.scss";
 import UpArrowIcon from "../../src/assets/icons/up-arrow-circle.svg";
 
