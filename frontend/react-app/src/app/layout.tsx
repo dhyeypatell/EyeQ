@@ -1,6 +1,6 @@
 import { Toaster } from "react-hot-toast";
 import { Inter } from "next/font/google";
-import { ToastConfig } from "./toastConfig";
+import type { ToastConfig } from "./toastConfig";
 import toastConfig from "./toastConfig.json";
 import metatdataData from "./metadata.json";
 import "../styles/reset.scss";
