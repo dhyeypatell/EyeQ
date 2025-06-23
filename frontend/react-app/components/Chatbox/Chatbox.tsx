@@ -2,11 +2,13 @@
 import { useRef, useState } from "react";
 import clsx from "clsx";
 import toast from "react-hot-toast";
+import type { ChatboxData } from "./chatbox";
 import chatboxData from "./Chatbox.json";
 import Styles from "./Chatbox.module.scss";
 import UpArrowIcon from "../../src/assets/icons/up-arrow-circle.svg";
 
 export default function Chatbox() {
+  const chatboxDataTyped = chatboxData as ChatboxData;
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
   const [userMessage, setUserMessage] = useState<string>("");
@@ -18,13 +20,13 @@ export default function Chatbox() {
 
     const payload = {
       userMessage: userMessage.trim(),
-      timeStamp: new Date().toLocaleString(chatboxData.Chatbox.locale, {
-        timeZone: chatboxData.Chatbox.timezone,
+      timeStamp: new Date().toLocaleString(chatboxDataTyped.Chatbox.locale, {
+        timeZone: chatboxDataTyped.Chatbox.timezone,
       }),
     };
 
     try {
-      const response = await fetch(chatboxData.Chatbox.fetchURLDev, {
+      const response = await fetch(chatboxDataTyped.Chatbox.fetchURLDev, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,7 +35,9 @@ export default function Chatbox() {
       });
 
       if (!response.ok) {
-        throw new Error(chatboxData.Chatbox.postUserResponseMainErrorMessage);
+        throw new Error(
+          chatboxDataTyped.Chatbox.postUserResponseMainErrorMessage
+        );
       }
 
       setUserMessage("");
@@ -41,7 +45,9 @@ export default function Chatbox() {
       if (err instanceof Error) {
         toast.error(err.message);
       } else {
-        toast.error(chatboxData.Chatbox.postUserResponseUnknownErrorMessage);
+        toast.error(
+          chatboxDataTyped.Chatbox.postUserResponseUnknownErrorMessage
+        );
       }
     }
   }
@@ -74,8 +80,8 @@ export default function Chatbox() {
   return (
     <div className={Styles.container} onClick={handleContainerClick}>
       <textarea
-        name={chatboxData.Chatbox.textareaName}
-        placeholder={chatboxData.Chatbox.textareaPlaceholder}
+        name={chatboxDataTyped.Chatbox.textareaName}
+        placeholder={chatboxDataTyped.Chatbox.textareaPlaceholder}
         ref={textareaRef}
         className={Styles.chatInput}
         value={userMessage}
