@@ -1,9 +1,16 @@
 # Dependencies
-node_modules
-.next
+node_modules/
+.next/
 
 # Lock files
 package-lock.json
+
+# Python virtual environments
+venv/
+.venv/
+
+# Python cache files
+__pycache__/
 
 # Other
 .DS_Store

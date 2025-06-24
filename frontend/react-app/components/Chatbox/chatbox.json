@@ -1,0 +1,11 @@
+{
+  "Chatbox": {
+    "textareaName": "prompt",
+    "textareaPlaceholder": "Ask anything",
+    "postUserResponseMainErrorMessage": "Failed to send message",
+    "postUserResponseUnknownErrorMessage": "An unknown error occurred",
+    "fetchURLDev": "http://localhost:8000/api/user-messages",
+    "locale": "en-CA",
+    "timezone": "America/Toronto"
+  }
+}

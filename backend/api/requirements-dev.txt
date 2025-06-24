@@ -1,0 +1,6 @@
+-r requirements-prod.txt
+
+black==25.1.0
+mypy==1.16.1
+mypy_extensions==1.1.0
+typing-inspection==0.4.1
