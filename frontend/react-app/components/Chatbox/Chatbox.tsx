@@ -26,7 +26,7 @@ export default function Chatbox() {
     };
 
     try {
-      const response = await fetch(chatboxDataTyped.Chatbox.fetchURLDev, {
+      const response = await fetch(chatboxDataTyped.Chatbox.fetchURLProd, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

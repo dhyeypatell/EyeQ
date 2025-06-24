@@ -5,6 +5,7 @@ export interface ChatboxData {
     postUserResponseMainErrorMessage: string;
     postUserResponseUnknownErrorMessage: string;
     fetchURLDev: string;
+    fetchURLProd: string;
     locale: string;
     timezone: string;
   };
