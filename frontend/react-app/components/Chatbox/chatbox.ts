@@ -8,5 +8,6 @@ export interface ChatboxData {
     fetchURLProd: string;
     locale: string;
     timezone: string;
+    userMessageType: string;
   };
 }

@@ -19,6 +19,7 @@ export default function Chatbox() {
     }
 
     const payload = {
+      type: chatboxDataTyped.Chatbox.userMessageType,
       userMessage: userMessage.trim(),
       timeStamp: new Date().toLocaleString(chatboxDataTyped.Chatbox.locale, {
         timeZone: chatboxDataTyped.Chatbox.timezone,
