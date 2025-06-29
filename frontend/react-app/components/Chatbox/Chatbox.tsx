@@ -1,17 +1,30 @@
-"use client";
-import { useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import clsx from "clsx";
 import toast from "react-hot-toast";
 import type { ChatboxData } from "./chatbox";
+import type { ChatMessage } from "../../src/types/chatMessage";
+import { validateSender } from "../../lib/functions/validateSender";
 import chatboxData from "./chatbox.json";
 import Styles from "./Chatbox.module.scss";
 import UpArrowIcon from "../../src/assets/icons/up-arrow-circle.svg";
 
-export default function Chatbox() {
+interface ChatboxProps {
+  userMessage: string;
+  setUserMessage: (message: string) => void;
+  chatMessages: ChatMessage[];
+  setChatMessages: React.Dispatch<React.SetStateAction<ChatMessage[]>>;
+}
+
+export default function Chatbox({
+  userMessage,
+  setUserMessage,
+  chatMessages,
+  setChatMessages,
+}: ChatboxProps) {
   const chatboxDataTyped = chatboxData as ChatboxData;
+  const chatboxRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
-  const [userMessage, setUserMessage] = useState<string>("");
 
   async function sendUserMessage(): Promise<void> {
     if (isIconDisabled()) {
@@ -40,6 +53,18 @@ export default function Chatbox() {
           chatboxDataTyped.Chatbox.postUserResponseMainErrorMessage
         );
       }
+
+      setChatMessages((prev) => [
+        ...prev,
+        {
+          sender: validateSender(payload.type),
+          message: userMessage,
+        },
+        {
+          sender: validateSender("ai"),
+          message: "This is a temporary response.",
+        },
+      ]);
 
       setUserMessage("");
     } catch (err: unknown) {
@@ -78,8 +103,16 @@ export default function Chatbox() {
     return !userMessage.trim().length;
   }
 
+  useEffect(() => {
+    chatboxRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chatMessages]);
+
   return (
-    <div className={Styles.container} onClick={handleContainerClick}>
+    <div
+      className={Styles.container}
+      ref={chatboxRef}
+      onClick={handleContainerClick}
+    >
       <textarea
         name={chatboxDataTyped.Chatbox.textareaName}
         placeholder={chatboxDataTyped.Chatbox.textareaPlaceholder}
