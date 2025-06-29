@@ -1,0 +1,26 @@
+@use "../../src/styles/mixins" as *;
+
+.container {
+  width: 832px;
+  font-size: 15px;
+  line-height: 25px;
+  margin-bottom: 20px;
+}
+
+@include respond-to("large") {
+  .container {
+    width: 632px;
+  }
+}
+
+@include respond-to("medium") {
+  .container {
+    width: 90%;
+  }
+}
+
+@include respond-to("small") {
+  .container {
+    width: 95%;
+  }
+}
