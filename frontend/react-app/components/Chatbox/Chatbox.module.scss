@@ -2,11 +2,16 @@
 @use "../../src/styles/colors" as *;
 
 .container {
+  position: sticky;
+  bottom: 25px;
   border: 1px solid $black;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: white;
+  box-shadow: 0 4px 12px $light-gray;
+  margin-top: 25px;
 
   &:hover {
     cursor: text;

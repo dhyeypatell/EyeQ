@@ -1,0 +1,50 @@
+@use "../../src/styles/mixins" as *;
+@use "../../src/styles/colors" as *;
+
+.container {
+  width: 832px;
+  display: flex;
+  justify-content: flex-end;
+
+  .block {
+    max-width: 535px;
+    background-color: $light-gray;
+    border-radius: 35px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    line-height: 25px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+  }
+}
+
+@include respond-to("large") {
+  .container {
+    width: 632px;
+
+    .block {
+      max-width: 445px;
+    }
+  }
+}
+
+@include respond-to("medium") {
+  .container {
+    width: 90%;
+
+    .block {
+      max-width: 360px;
+    }
+  }
+}
+
+@include respond-to("small") {
+  .container {
+    width: 95%;
+
+    .block {
+      max-width: 325px;
+    }
+  }
+}

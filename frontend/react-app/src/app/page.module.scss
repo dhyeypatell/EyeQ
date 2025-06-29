@@ -2,24 +2,27 @@
 
 .mainContainer {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 22px;
+  padding: 25px;
+
+  .chatMessagesContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
-@include respond-to("large") {
-  .mainContainer {
-    gap: 20px;
-  }
+.chatLayout {
+  justify-content: space-between;
 }
 
 @include respond-to("small") {
   .mainContainer {
     justify-content: space-between;
-    gap: 0;
-    padding: 25px;
   }
 }
