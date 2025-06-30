@@ -1,9 +1,9 @@
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from datetime import datetime
-from zoneinfo import ZoneInfo
 from pymongo import MongoClient
 from dotenv import load_dotenv
+from utils.time_utils import get_timestamp
+import utils.constants as C
 import os
 
 load_dotenv()
@@ -20,43 +20,33 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=C.ALLOWED_ORIGINS,
+    allow_methods=C.ALLOWED_METHODS,
+    allow_headers=C.ALLOWED_HEADERS,
 )
 
 
-def get_timestamp():
-    toronto_time = datetime.now(ZoneInfo("America/Toronto"))
-    timestamp = toronto_time.strftime("%Y-%m-%d %I:%M:%S %p %Z")
-    return timestamp
-
-
-@app.post("/api/user-messages")
+@app.post(C.ROUTE_USER_MESSAGES)
 async def post_user_message(request: Request):
     data = await request.json()
     payload = {
-        "type": data.get("type"),
-        "userMessage": data.get("userMessage"),
-        "timestamp": data.get("timestamp", get_timestamp()),
+        C.KEY_TYPE: data.get(C.KEY_TYPE),
+        C.KEY_USER_MESSAGE: data.get(C.KEY_USER_MESSAGE),
+        C.KEY_TIMESTAMP: data.get(C.KEY_TIMESTAMP, get_timestamp()),
     }
 
     try:
         collection.insert_one(payload)
     except Exception:
-        raise HTTPException(
-            status_code=500, detail="Failed to insert document into the database"
-        )
+        raise HTTPException(status_code=500, detail=C.ERROR_DOC_INSERT)
 
 
-@app.get("/api/user-messages")
+@app.get(C.ROUTE_USER_MESSAGES)
 async def get_user_messages():
     try:
-        cursor = collection.find({"type": "user"})
+        cursor = collection.find({C.KEY_TYPE: C.SENDER_USER})
     except Exception:
-        raise HTTPException(
-            status_code=500, detail="Failed to retrieve user messages from the database"
-        )
+        raise HTTPException(status_code=500, detail=C.ERROR_DOC_FIND)
 
     userMessages = []
 
@@ -64,4 +54,4 @@ async def get_user_messages():
         doc["_id"] = str(doc["_id"])
         userMessages.append(doc)
 
-    return {"messages": userMessages}
+    return {"userMessages": userMessages}

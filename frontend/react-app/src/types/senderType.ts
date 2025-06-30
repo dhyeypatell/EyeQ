@@ -1,1 +1,4 @@
-export type SenderType = "user" | "ai";
+export enum SenderType {
+  User = "user",
+  AI = "ai",
+}

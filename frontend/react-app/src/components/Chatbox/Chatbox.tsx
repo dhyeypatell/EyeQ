@@ -2,11 +2,13 @@ import React, { useEffect, useRef } from "react";
 import clsx from "clsx";
 import toast from "react-hot-toast";
 import type { ChatboxData } from "./chatbox";
-import type { ChatMessage } from "../../src/types/chatMessage";
-import { validateSender } from "../../lib/functions/validateSender";
+import type { ChatMessage } from "../../types/chatMessage";
+import { SenderType } from "../../types/senderType";
+import { HttpMethod, HttpHeader, ContentType } from "../../types/http";
+import { getFormattedTimestamp } from "../../lib/functions/getFormattedTimestamp";
 import chatboxData from "./chatbox.json";
 import Styles from "./Chatbox.module.scss";
-import UpArrowIcon from "../../src/assets/icons/up-arrow-circle.svg";
+import UpArrowIcon from "../../assets/icons/up-arrow-circle.svg";
 
 interface ChatboxProps {
   userMessage: string;
@@ -32,21 +34,22 @@ export default function Chatbox({
     }
 
     const payload = {
-      type: chatboxDataTyped.Chatbox.userMessageType,
+      type: SenderType.User,
       userMessage: userMessage.trim(),
-      timeStamp: new Date().toLocaleString(chatboxDataTyped.Chatbox.locale, {
-        timeZone: chatboxDataTyped.Chatbox.timezone,
-      }),
+      timeStamp: getFormattedTimestamp(),
     };
 
     try {
-      const response = await fetch(chatboxDataTyped.Chatbox.fetchURLProd, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      const response = await fetch(
+        chatboxDataTyped.Chatbox.fetchURLUserMessagesProd,
+        {
+          method: HttpMethod.POST,
+          headers: {
+            [HttpHeader.ContentType]: ContentType.JSON,
+          },
+          body: JSON.stringify(payload),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(
@@ -57,11 +60,11 @@ export default function Chatbox({
       setChatMessages((prev) => [
         ...prev,
         {
-          sender: validateSender(payload.type),
+          sender: SenderType.User,
           message: userMessage,
         },
         {
-          sender: validateSender("ai"),
+          sender: SenderType.AI,
           message: "This is a temporary response.",
         },
       ]);
