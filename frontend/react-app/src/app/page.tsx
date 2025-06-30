@@ -2,10 +2,10 @@
 import { useState } from "react";
 import clsx from "clsx";
 import type { ChatMessage } from "../types/chatMessage";
-import Greeting from "../../components/Greeting/Greeting";
-import Chatbox from "../../components/Chatbox/Chatbox";
-import UserMessageBlock from "../../components/UserMessageBlock/UserMessageBlock";
-import AIMessageBlock from "../../components/AIMessageBlock/AIMessageBlock";
+import Greeting from "../components/Greeting/Greeting";
+import Chatbox from "../components/Chatbox/Chatbox";
+import UserMessageBlock from "../components/UserMessageBlock/UserMessageBlock";
+import AIMessageBlock from "../components/AIMessageBlock/AIMessageBlock";
 import Styles from "./page.module.scss";
 
 export default function Home() {

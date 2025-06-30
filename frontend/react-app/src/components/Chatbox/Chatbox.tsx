@@ -2,11 +2,11 @@ import React, { useEffect, useRef } from "react";
 import clsx from "clsx";
 import toast from "react-hot-toast";
 import type { ChatboxData } from "./chatbox";
-import type { ChatMessage } from "../../src/types/chatMessage";
+import type { ChatMessage } from "../../types/chatMessage";
 import { validateSender } from "../../lib/functions/validateSender";
 import chatboxData from "./chatbox.json";
 import Styles from "./Chatbox.module.scss";
-import UpArrowIcon from "../../src/assets/icons/up-arrow-circle.svg";
+import UpArrowIcon from "../../assets/icons/up-arrow-circle.svg";
 
 interface ChatboxProps {
   userMessage: string;
