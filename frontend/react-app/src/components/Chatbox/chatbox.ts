@@ -4,10 +4,7 @@ export interface ChatboxData {
     textareaPlaceholder: string;
     postUserResponseMainErrorMessage: string;
     postUserResponseUnknownErrorMessage: string;
-    fetchURLDev: string;
-    fetchURLProd: string;
-    locale: string;
-    timezone: string;
-    userMessageType: string;
+    fetchURLUserMessagesDev: string;
+    fetchURLUserMessagesProd: string;
   };
 }
