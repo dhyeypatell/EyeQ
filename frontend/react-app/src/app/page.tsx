@@ -2,6 +2,7 @@
 import { useState } from "react";
 import clsx from "clsx";
 import type { ChatMessage } from "../types/chatMessage";
+import { SenderType } from "../types/senderType";
 import Greeting from "../components/Greeting/Greeting";
 import Chatbox from "../components/Chatbox/Chatbox";
 import UserMessageBlock from "../components/UserMessageBlock/UserMessageBlock";
@@ -13,9 +14,9 @@ export default function Home() {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
 
   function renderMessageBlock(chatMessage: ChatMessage, index: number) {
-    if (chatMessage.sender === "user") {
+    if (chatMessage.sender === SenderType.User) {
       return <UserMessageBlock key={index} message={chatMessage.message} />;
-    } else if (chatMessage.sender === "ai") {
+    } else if (chatMessage.sender === SenderType.AI) {
       return <AIMessageBlock key={index} message={chatMessage.message} />;
     }
 
