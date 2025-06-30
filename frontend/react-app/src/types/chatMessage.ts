@@ -1,4 +1,4 @@
-import type { SenderType } from "./senderType";
+import { SenderType } from "./senderType";
 
 export interface ChatMessage {
   sender: SenderType;
